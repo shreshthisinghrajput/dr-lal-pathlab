@@ -184,3 +184,91 @@ body {
   background: var(--secondary);
   border-radius: 2px;
 }
+
+/* Scroll Reveal Animation */
+@keyframes scrollReveal {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.scroll-visible {
+  animation: scrollReveal 0.6s ease-out forwards;
+}
+
+/* Staggered animation delays */
+.scroll-delay-1 {
+  animation-delay: 0.1s;
+}
+
+.scroll-delay-2 {
+  animation-delay: 0.2s;
+}
+
+.scroll-delay-3 {
+  animation-delay: 0.3s;
+}
+
+.scroll-delay-4 {
+  animation-delay: 0.4s;
+}
+
+.scroll-delay-5 {
+  animation-delay: 0.5s;
+}
+
+/* Booking Modal Animations */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slideUp {
+  animation: slideUp 0.3s ease-out forwards;
+}
+
+.animate-slideInFromRight {
+  animation: slideInFromRight 0.25s ease-out forwards;
+}
+
+/* Health Camp Gallery */
+.health-camp-gallery {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.health-camp-gallery::-webkit-scrollbar {
+  display: none;
+}

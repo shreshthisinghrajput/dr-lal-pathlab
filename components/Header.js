@@ -82,7 +82,7 @@ export default function Header() {
                                 Tests
                             </Link>
                             <Link href="/offers" className="text-gray-700 hover:text-primary-600 transition-colors font-medium flex items-center">
-                                <span className="mr-1">🎁</span> Offers
+                                <span className="mr-1">🏕️</span> Health Camp
                             </Link>
                             <Link href="/about" className="text-gray-700 hover:text-primary-600 transition-colors font-medium">
                                 About Us
@@ -170,7 +170,7 @@ export default function Header() {
                                     Tests
                                 </Link>
                                 <Link href="/offers" className="text-gray-700 hover:text-primary-600 transition-colors font-medium flex items-center">
-                                    <span className="mr-1">🎁</span> Offers
+                                    <span className="mr-1">🏕️</span> Health Camp
                                 </Link>
                                 <Link href="/about" className="text-gray-700 hover:text-primary-600 transition-colors font-medium">
                                     About Us

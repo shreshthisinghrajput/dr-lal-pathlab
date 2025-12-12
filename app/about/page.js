@@ -4,9 +4,13 @@ export default function AboutPage() {
             {/* Hero Section */}
             <section className="hero-gradient text-white py-20">
                 <div className="container mx-auto px-4 text-center">
+                    <div className="inline-flex items-center px-4 py-2 bg-white/20 rounded-full mb-4">
+                        <span className="text-2xl mr-2">🏥</span>
+                        <span className="font-semibold">Authorized Dr. Lal PathLabs Collection Center</span>
+                    </div>
                     <h1 className="text-4xl md:text-5xl font-bold mb-4">About Us</h1>
                     <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-                        Trusted pathology services with a commitment to accurate diagnostics and patient care
+                        Your trusted Dr. Lal PathLabs franchise partner in Ambikapur, Chhattisgarh
                     </p>
                 </div>
             </section>
@@ -18,23 +22,25 @@ export default function AboutPage() {
                         <div>
                             <span className="text-primary-600 font-semibold mb-2 inline-block">Our Story</span>
                             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                                Shree Diagnostic
+                                SHREEM Diagnostic
                             </h2>
+                            <div className="inline-flex items-center bg-primary-100 px-4 py-2 rounded-full mb-6">
+                                <span className="text-primary-700 font-semibold text-sm">Official Dr. Lal PathLabs Franchise | CC-06</span>
+                            </div>
                             <p className="text-gray-600 mb-4 leading-relaxed">
-                                Shree Diagnostic was established with a vision to provide affordable and accurate
-                                diagnostic services to the people of Ambikapur and surrounding regions. Located
-                                near Laxmipur School, Mathpara Chowk, we have grown to become one of the
-                                most trusted pathology laboratories in the area.
+                                <strong>SHREEM Diagnostic</strong> is an authorized franchise of <strong>Dr. Lal PathLabs</strong>,
+                                India&apos;s leading and most trusted diagnostic healthcare company. Established in <strong>2025</strong>,
+                                we bring world-class diagnostic services to the people of Ambikapur and surrounding regions.
                             </p>
                             <p className="text-gray-600 mb-4 leading-relaxed">
-                                Our state-of-the-art facility is equipped with modern diagnostic equipment
-                                and staffed by experienced professionals who are dedicated to delivering
-                                precise and timely results.
+                                As an official collection center (CC-06), we maintain the same rigorous quality standards
+                                that have made Dr. Lal PathLabs a household name in healthcare diagnostics across India for
+                                over 75 years.
                             </p>
                             <p className="text-gray-600 leading-relaxed">
-                                We believe that quality healthcare should be accessible to everyone, which
-                                is why we offer our services at competitive prices without compromising on
-                                quality or accuracy.
+                                Located near Laxmipur School, Mathpara Chowk, our state-of-the-art facility is equipped
+                                with modern diagnostic equipment and staffed by experienced professionals dedicated to
+                                delivering precise and timely results.
                             </p>
                         </div>
                         <div className="relative">
@@ -47,15 +53,83 @@ export default function AboutPage() {
                                 </div>
                             </div>
                             <div className="absolute -bottom-6 -right-6 bg-secondary-400 text-gray-900 px-6 py-4 rounded-xl shadow-lg">
-                                <p className="font-bold text-2xl">Since 2015</p>
-                                <p className="text-sm">Serving the Community</p>
+                                <p className="font-bold text-2xl">Since 2025</p>
+                                <p className="text-sm">Dr. Lal PathLabs Franchise</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
+            {/* Dr. Lal PathLabs Info */}
+            <section className="py-20 bg-gradient-to-br from-primary-600 to-primary-800 text-white">
+                <div className="container mx-auto px-4">
+                    <div className="text-center mb-12">
+                        <span className="text-secondary-400 font-semibold mb-2 inline-block">Our Parent Company</span>
+                        <h2 className="text-3xl md:text-4xl font-bold mb-4">About Dr. Lal PathLabs</h2>
+                        <p className="text-blue-100 max-w-3xl mx-auto">
+                            India&apos;s largest and most trusted diagnostic healthcare company
+                        </p>
+                    </div>
 
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center">
+                            <div className="text-4xl font-bold text-secondary-400 mb-2">75+</div>
+                            <p className="text-blue-100">Years of Excellence</p>
+                        </div>
+                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center">
+                            <div className="text-4xl font-bold text-secondary-400 mb-2">270+</div>
+                            <p className="text-blue-100">Clinical Labs</p>
+                        </div>
+                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center">
+                            <div className="text-4xl font-bold text-secondary-400 mb-2">4000+</div>
+                            <p className="text-blue-100">Collection Centers</p>
+                        </div>
+                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center">
+                            <div className="text-4xl font-bold text-secondary-400 mb-2">₹7000 Cr</div>
+                            <p className="text-blue-100">Market Value</p>
+                        </div>
+                    </div>
+
+                    <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+                        <div className="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h3 className="text-xl font-bold mb-4 text-secondary-400">Legacy & History</h3>
+                                <p className="text-blue-100 mb-4">
+                                    Dr. Lal PathLabs was founded in 1949 by Dr. S.K. Lal in Delhi. What started as a
+                                    small clinical laboratory has grown into India&apos;s largest diagnostic chain with a
+                                    presence across the nation.
+                                </p>
+                                <p className="text-blue-100">
+                                    The company is listed on both BSE and NSE, reflecting its strong market position
+                                    and investor confidence. Dr. Lal PathLabs processes over 60 million samples annually.
+                                </p>
+                            </div>
+                            <div>
+                                <h3 className="text-xl font-bold mb-4 text-secondary-400">Quality & Accreditations</h3>
+                                <ul className="space-y-3 text-blue-100">
+                                    <li className="flex items-start">
+                                        <span className="mr-2">✅</span>
+                                        <span><strong>NABL Accredited</strong> - National Accreditation Board for Testing and Calibration Laboratories</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                        <span className="mr-2">✅</span>
+                                        <span><strong>CAP Accredited</strong> - College of American Pathologists</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                        <span className="mr-2">✅</span>
+                                        <span><strong>ISO Certified</strong> - International quality management standards</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                        <span className="mr-2">✅</span>
+                                        <span><strong>1500+ Tests</strong> - Comprehensive diagnostic portfolio</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             {/* Mission & Values */}
             <section className="py-20 bg-white">
@@ -74,9 +148,8 @@ export default function AboutPage() {
                             </div>
                             <h3 className="text-xl font-bold text-gray-900 mb-4">Our Mission</h3>
                             <p className="text-gray-600">
-                                To provide accurate, reliable, and affordable diagnostic services
-                                that empower patients and healthcare providers to make informed
-                                decisions about health.
+                                To bring Dr. Lal PathLabs&apos; world-class diagnostic services to Ambikapur,
+                                making quality healthcare accessible and affordable for all.
                             </p>
                         </div>
 
@@ -89,8 +162,8 @@ export default function AboutPage() {
                             </div>
                             <h3 className="text-xl font-bold text-gray-900 mb-4">Our Vision</h3>
                             <p className="text-gray-600">
-                                To be the most trusted and preferred diagnostic laboratory in the
-                                region, known for excellence in quality, innovation, and patient care.
+                                To be the most trusted diagnostic center in the region, known for excellence
+                                in quality, accuracy, and patient care.
                             </p>
                         </div>
 
@@ -102,8 +175,8 @@ export default function AboutPage() {
                             </div>
                             <h3 className="text-xl font-bold text-gray-900 mb-4">Our Values</h3>
                             <p className="text-gray-600">
-                                Integrity, accuracy, compassion, and commitment to continuous
-                                improvement guide everything we do at Shree Diagnostic.
+                                Accuracy, integrity, compassion, and commitment to continuous improvement
+                                guide everything we do at SHREEM Diagnostic.
                             </p>
                         </div>
                     </div>
@@ -114,7 +187,7 @@ export default function AboutPage() {
             <section className="py-20 bg-gradient-to-br from-primary-50 to-blue-50">
                 <div className="container mx-auto px-4">
                     <div className="max-w-3xl mx-auto text-center">
-                        <span className="text-primary-600 font-semibold mb-2 inline-block">Leadership</span>
+                        <span className="text-primary-600 font-semibold mb-2 inline-block">Franchise Partner</span>
                         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Our Commitment</h2>
 
                         <div className="bg-white rounded-2xl shadow-lg p-8">
@@ -124,12 +197,18 @@ export default function AboutPage() {
                                 </svg>
                             </div>
                             <h3 className="text-2xl font-bold text-gray-900 mb-2">Quality Healthcare for All</h3>
-                            <p className="text-primary-600 font-semibold mb-4">Trusted Since 2015</p>
+                            <div className="inline-flex items-center bg-secondary-100 px-4 py-2 rounded-full mb-4">
+                                <span className="text-primary-700 font-semibold">Established 2025 | Dr. Lal PathLabs Franchise</span>
+                            </div>
+                            <p className="text-gray-600 leading-relaxed mb-4">
+                                SHREEM Diagnostic is committed to providing quality healthcare that is
+                                accessible to all. As an authorized Dr. Lal PathLabs franchise, we ensure that
+                                every test conducted meets the highest standards of accuracy and reliability.
+                            </p>
                             <p className="text-gray-600 leading-relaxed">
-                                Shree Diagnostic is committed to providing quality healthcare that is
-                                accessible to all. Our vision is to be the most trusted diagnostic center
-                                in the region, serving thousands of patients every year with accurate
-                                and timely results.
+                                Our vision is to be the most trusted diagnostic center in the region,
+                                serving thousands of patients every year with accurate and timely results
+                                backed by Dr. Lal PathLabs&apos; 75+ years of experience.
                             </p>
                         </div>
                     </div>
@@ -138,3 +217,4 @@ export default function AboutPage() {
         </div>
     );
 }
+

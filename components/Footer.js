@@ -28,7 +28,7 @@ export default function Footer() {
                             </div>
                         </div>
                         <p className="text-gray-400 mb-2 max-w-md">
-                            Get ur health checked with us ✨
+                            Get your health checked with us ✨
                         </p>
                         <p className="text-gray-400 mb-4 max-w-md">
                             SHREEM Diagnostic is an authorized Dr. Lal PathLabs collection center providing accurate and timely diagnostic services. We are committed to delivering quality healthcare with compassion.

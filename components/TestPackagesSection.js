@@ -1,5 +1,8 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+
 const testPackages = [
     {
         name: 'Swasth Fit SUPER 1',
@@ -39,7 +42,35 @@ const testPackages = [
     },
 ];
 
-export default function TestPackagesSection() {
+export default function TestPackagesSection({ onBookNow }) {
+    const [visibleCards, setVisibleCards] = useState([]);
+    const cardRefs = useRef([]);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const index = cardRefs.current.indexOf(entry.target);
+                        if (index !== -1 && !visibleCards.includes(index)) {
+                            setVisibleCards((prev) => [...prev, index]);
+                        }
+                    }
+                });
+            },
+            {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px',
+            }
+        );
+
+        cardRefs.current.forEach((ref) => {
+            if (ref) observer.observe(ref);
+        });
+
+        return () => observer.disconnect();
+    }, [visibleCards]);
+
     return (
         <section className="py-20 bg-white" id="packages">
             <div className="container mx-auto px-4">
@@ -60,7 +91,9 @@ export default function TestPackagesSection() {
                     {testPackages.map((pkg, index) => (
                         <div
                             key={index}
-                            className={`relative rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:scale-105 ${pkg.featured
+                            ref={(el) => (cardRefs.current[index] = el)}
+                            className={`relative rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:scale-105 scroll-reveal ${visibleCards.includes(index) ? `scroll-visible scroll-delay-${(index % 5) + 1}` : ''
+                                } ${pkg.featured
                                     ? 'bg-gradient-to-br from-primary-600 to-primary-800 text-white lg:col-span-1'
                                     : pkg.popular
                                         ? 'bg-gradient-to-br from-secondary-400 to-secondary-500 text-primary-900'
@@ -122,17 +155,17 @@ export default function TestPackagesSection() {
                                 </div>
 
                                 {/* Book Button */}
-                                <a
-                                    href="tel:9238745983"
+                                <button
+                                    onClick={() => onBookNow && onBookNow(pkg.name)}
                                     className={`block w-full text-center py-3 px-6 rounded-lg font-semibold transition-all duration-300 ${pkg.featured
-                                            ? 'bg-secondary-400 text-primary-800 hover:bg-secondary-300'
-                                            : pkg.popular
-                                                ? 'bg-primary-600 text-white hover:bg-primary-700'
-                                                : 'bg-primary-600 text-white hover:bg-primary-700'
+                                        ? 'bg-secondary-400 text-primary-800 hover:bg-secondary-300'
+                                        : pkg.popular
+                                            ? 'bg-primary-600 text-white hover:bg-primary-700'
+                                            : 'bg-primary-600 text-white hover:bg-primary-700'
                                         }`}
                                 >
                                     Book Now
-                                </a>
+                                </button>
                             </div>
                         </div>
                     ))}
@@ -140,7 +173,26 @@ export default function TestPackagesSection() {
 
                 {/* Test Inclusion Table */}
                 <div className="mt-16 bg-gray-50 rounded-2xl p-8 overflow-x-auto">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Test Inclusion Comparison</h3>
+                    <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-6">
+                        <Image
+                            src="/75-years-logo.png"
+                            alt="Dr. Lal PathLabs - 75+ Years of Trust"
+                            width={80}
+                            height={80}
+                            className="object-contain"
+                        />
+                        <div className="text-center">
+                            <h3 className="text-2xl font-bold text-gray-900">Test Inclusion Comparison</h3>
+                            <p className="text-sm text-gray-500">Powered by Dr. Lal PathLabs - 75+ Years of Trust</p>
+                        </div>
+                        <Image
+                            src="/75-years-logo.png"
+                            alt="Dr. Lal PathLabs - 75+ Years of Trust"
+                            width={80}
+                            height={80}
+                            className="object-contain hidden md:block"
+                        />
+                    </div>
                     <table className="w-full min-w-[700px]">
                         <thead>
                             <tr className="border-b-2 border-gray-200">
