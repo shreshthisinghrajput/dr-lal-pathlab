@@ -46,19 +46,21 @@ export default function HomePageContent() {
                             </div>
                             <div className="inline-flex items-center px-4 py-2 bg-green-500/30 rounded-full mb-6 ml-0 md:ml-2">
                                 <span className="text-lg mr-2">🏠</span>
-                                <span className="text-sm font-semibold">We provide FREE Home Collection | मुफ्त होम कलेक्शन उपलब्ध</span>
+                                <span className="text-sm font-semibold">We provide FREE Home Collection | निशुल्क होम कलेक्शन उपलब्ध</span>
                             </div>
 
-                            {/* Instagram Bio Tagline */}
-                            <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
-                                Get your health checked<br />
-                                <span className="text-secondary-400">with us ✨</span>
+                            {/* Main Heading - SHREEM Diagnostic */}
+                            <h1 className="text-5xl md:text-7xl font-extrabold mb-2 leading-tight">
+                                <span className="text-secondary-400">SHREEM</span> Diagnostic
                             </h1>
-                            <p className="text-xl text-blue-100 mb-2">
-                                हमारे साथ अपनी सेहत की जांच कराएं
+                            <p className="text-2xl md:text-3xl font-bold text-blue-100 mb-4">
+                                श्रीम डायग्नोस्टिक
                             </p>
-                            <p className="text-lg text-blue-100 mb-8 max-w-lg">
-                                <span className="font-semibold text-secondary-400">SHREEM Diagnostic</span> - Your trusted diagnostic partner powered by Dr. Lal PathLabs quality standards.
+                            <p className="text-xl md:text-2xl text-white/90 mb-2">
+                                Get your health checked with us ✨
+                            </p>
+                            <p className="text-lg text-blue-200 mb-8 max-w-lg">
+                                Your trusted diagnostic partner powered by Dr. Lal PathLabs quality standards.
                             </p>
                             <div className="flex flex-wrap gap-4">
                                 <Link href="/tests" className="btn-secondary inline-flex items-center">

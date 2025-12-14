@@ -32,9 +32,9 @@ export default function OffersPage() {
 
     // Default services if camp doesn't have any
     const defaultServices = [
-        { name: 'Free Blood Sugar Test', nameHindi: 'मुफ्त ब्लड शुगर जांच' },
-        { name: 'Free Blood Pressure Check', nameHindi: 'मुफ्त ब्लड प्रेशर जांच' },
-        { name: 'Free Health Consultation', nameHindi: 'मुफ्त स्वास्थ्य परामर्श' },
+        { name: 'Free Blood Sugar Test', nameHindi: 'निशुल्क ब्लड शुगर जांच' },
+        { name: 'Free Blood Pressure Check', nameHindi: 'निशुल्क ब्लड प्रेशर जांच' },
+        { name: 'Free Health Consultation', nameHindi: 'निशुल्क स्वास्थ्य परामर्श' },
         { name: 'Health Awareness Session', nameHindi: 'स्वास्थ्य जागरूकता सत्र' },
     ];
 
@@ -84,7 +84,7 @@ export default function OffersPage() {
                             We organize free health checkup camps for the community to spread awareness about preventive healthcare.
                         </p>
                         <p className="text-gray-500 mt-2">
-                            समुदाय में निवारक स्वास्थ्य देखभाल के बारे में जागरूकता फैलाने के लिए हम मुफ्त स्वास्थ्य जांच शिविर का आयोजन करते हैं।
+                            समुदाय में निवारक स्वास्थ्य देखभाल के बारे में जागरूकता फैलाने के लिए हम निशुल्क स्वास्थ्य जांच शिविर का आयोजन करते हैं।
                         </p>
                     </div>
 
@@ -103,8 +103,8 @@ export default function OffersPage() {
                                             key={camp._id}
                                             onClick={() => setSelectedCamp(camp)}
                                             className={`px-4 py-2 rounded-full font-medium transition-all ${selectedCamp?._id === camp._id
-                                                    ? 'bg-primary-600 text-white'
-                                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                                ? 'bg-primary-600 text-white'
+                                                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                                 }`}
                                         >
                                             {camp.name}
@@ -176,7 +176,7 @@ export default function OffersPage() {
 
                                         <div className="bg-gradient-to-r from-secondary-400 to-secondary-500 text-primary-800 px-6 py-4 rounded-xl shadow-lg inline-block">
                                             <p className="font-bold text-lg">Free Health Camp</p>
-                                            <p className="text-sm">मुफ्त स्वास्थ्य शिविर</p>
+                                            <p className="text-sm">निशुल्क स्वास्थ्य शिविर</p>
                                         </div>
                                     </div>
 
@@ -253,7 +253,7 @@ export default function OffersPage() {
                                 </div>
                                 <div className="absolute -bottom-4 -right-4 bg-gradient-to-r from-secondary-400 to-secondary-500 text-primary-800 px-6 py-4 rounded-xl shadow-lg">
                                     <p className="font-bold text-lg">Free Health Camp</p>
-                                    <p className="text-sm">मुफ्त स्वास्थ्य शिविर</p>
+                                    <p className="text-sm">निशुल्क स्वास्थ्य शिविर</p>
                                 </div>
                             </div>
                             <div>

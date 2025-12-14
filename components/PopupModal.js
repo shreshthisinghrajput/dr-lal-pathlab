@@ -16,15 +16,8 @@ export default function PopupModal() {
         const hasSeenPopup = sessionStorage.getItem('hasSeenPopup');
         if (!hasSeenPopup) {
             setIsOpen(true);
-
-            // Auto-close after 2 seconds
-            const timer = setTimeout(() => {
-                handleClose();
-            }, 2000);
-
-            return () => clearTimeout(timer);
         }
-    }, [handleClose]);
+    }, []);
 
     if (!isOpen) return null;
 
@@ -52,8 +45,28 @@ export default function PopupModal() {
                     </button>
                 </div>
 
+                {/* Partner Logos */}
+                <div className="flex items-center justify-center gap-4 px-4 -mt-4 mb-2">
+                    <div className="relative h-12 w-40">
+                        <Image
+                            src="/dr-lal-logo.png"
+                            alt="Dr Lal PathLabs"
+                            fill
+                            className="object-contain"
+                        />
+                    </div>
+                    <div className="relative h-16 w-16">
+                        <Image
+                            src="/75-years-trust.png"
+                            alt="75+ Years of Trust"
+                            fill
+                            className="object-contain"
+                        />
+                    </div>
+                </div>
+
                 {/* Header with Dr. Lal PathLabs Branding */}
-                <div className="bg-gradient-to-r from-primary-600 via-primary-700 to-primary-600 text-white p-4 text-center -mt-6">
+                <div className="bg-gradient-to-r from-primary-600 via-primary-700 to-primary-600 text-white p-4 text-center">
                     <div className="flex items-center justify-center mb-2">
                         <span className="text-3xl mr-2">🏥</span>
                         <div>
@@ -95,4 +108,5 @@ export default function PopupModal() {
         </div>
     );
 }
+
 
