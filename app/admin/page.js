@@ -86,7 +86,7 @@ export default function AdminDashboard() {
             </div>
 
             {/* Quick Actions */}
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
+            <div className="grid md:grid-cols-4 gap-6 mb-8">
                 <Link href="/admin/tests" className="bg-primary-600 text-white rounded-xl p-6 hover:bg-primary-700 transition-colors">
                     <svg className="w-8 h-8 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -101,6 +101,14 @@ export default function AdminDashboard() {
                     </svg>
                     <h3 className="font-bold text-lg">Manage Bookings</h3>
                     <p className="text-gray-700 text-sm">Update status & upload reports</p>
+                </Link>
+
+                <Link href="/admin/camps" className="bg-green-600 text-white rounded-xl p-6 hover:bg-green-700 transition-colors">
+                    <svg className="w-8 h-8 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <h3 className="font-bold text-lg">Health Camps</h3>
+                    <p className="text-green-100 text-sm">Manage photos & videos</p>
                 </Link>
 
                 <Link href="/admin/patients" className="bg-gray-800 text-white rounded-xl p-6 hover:bg-gray-700 transition-colors">

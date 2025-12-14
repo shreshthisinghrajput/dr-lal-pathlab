@@ -91,7 +91,7 @@ export default function Footer() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
-                                <span>Near Laxmipur School, Mathpara Chowk, Ambikapur<br />लक्ष्मीपुर स्कूल के पास, मठपारा चौक, अंबिकापुर</span>
+                                <span>Infront of Laxmipur School, Bilaspur Road, Mathpara, Ambikapur, Chhattisgarh<br />लक्ष्मीपुर स्कूल के सामने, बिलासपुर रोड, मठपारा, अंबिकापुर</span>
                             </li>
                             <li className="flex items-center space-x-2">
                                 <svg className="w-5 h-5 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -109,7 +109,7 @@ export default function Footer() {
                                 <svg className="w-5 h-5 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                                <span>Mon - Sat: 7:00 AM - 9:00 PM<br />सोम - शनि: सुबह 7:00 - रात 9:00</span>
+                                <span>Mon - Sat: 9:00 AM - 11:00 AM & 5:00 PM - 9:00 PM<br />Sun: 8:00 AM - 2:00 PM<br />सोम - शनि: सुबह 9 - 11 & शाम 5 - 9 | रवि: सुबह 8 - दोपहर 2</span>
                             </li>
                         </ul>
                     </div>
@@ -118,7 +118,7 @@ export default function Footer() {
                 {/* Bottom Bar */}
                 <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
                     <p>&copy; {new Date().getFullYear()} SHREEM Diagnostic - Authorized Dr. Lal PathLabs Collection Center (CC-06). All rights reserved.</p>
-                    <p className="mt-2 text-sm">Near Laxmipur School, Mathpara Chowk, Ambikapur | लक्ष्मीपुर स्कूल के पास, मठपारा चौक, अंबिकापुर</p>
+                    <p className="mt-2 text-sm">Infront of Laxmipur School, Bilaspur Road, Mathpara, Ambikapur | लक्ष्मीपुर स्कूल के सामने, बिलासपुर रोड, मठपारा, अंबिकापुर</p>
                 </div>
             </div>
         </footer>

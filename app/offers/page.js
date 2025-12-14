@@ -1,7 +1,43 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
 export default function OffersPage() {
+    const [camps, setCamps] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [selectedCamp, setSelectedCamp] = useState(null);
+
+    useEffect(() => {
+        fetchCamps();
+    }, []);
+
+    const fetchCamps = async () => {
+        try {
+            const response = await fetch('/api/camps?active=true');
+            const data = await response.json();
+            if (data.success) {
+                setCamps(data.data);
+                if (data.data.length > 0) {
+                    setSelectedCamp(data.data[0]);
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching camps:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // Default services if camp doesn't have any
+    const defaultServices = [
+        { name: 'Free Blood Sugar Test', nameHindi: 'मुफ्त ब्लड शुगर जांच' },
+        { name: 'Free Blood Pressure Check', nameHindi: 'मुफ्त ब्लड प्रेशर जांच' },
+        { name: 'Free Health Consultation', nameHindi: 'मुफ्त स्वास्थ्य परामर्श' },
+        { name: 'Health Awareness Session', nameHindi: 'स्वास्थ्य जागरूकता सत्र' },
+    ];
+
     return (
         <div className="animate-fadeIn">
             {/* Hero Section */}
@@ -36,92 +72,221 @@ export default function OffersPage() {
                 </div>
             </section>
 
-            {/* Medical Camp Section */}
+            {/* Medical Camps Section */}
             <section className="py-20 bg-white">
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-12">
                         <span className="text-primary-600 font-semibold mb-2 inline-block">Community Initiative | सामुदायिक पहल</span>
                         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                            Health Camp | स्वास्थ्य शिविर
+                            Health Camps | स्वास्थ्य शिविर
                         </h2>
                         <p className="text-gray-600 max-w-2xl mx-auto">
-                            We organized a free health checkup camp for the community to spread awareness about preventive healthcare.
+                            We organize free health checkup camps for the community to spread awareness about preventive healthcare.
                         </p>
                         <p className="text-gray-500 mt-2">
-                            समुदाय में निवारक स्वास्थ्य देखभाल के बारे में जागरूकता फैलाने के लिए हमने मुफ्त स्वास्थ्य जांच शिविर का आयोजन किया।
+                            समुदाय में निवारक स्वास्थ्य देखभाल के बारे में जागरूकता फैलाने के लिए हम मुफ्त स्वास्थ्य जांच शिविर का आयोजन करते हैं।
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-12 items-center">
-                        {/* Camp Image */}
-                        <div className="relative">
-                            <div className="relative w-full h-96 rounded-2xl overflow-hidden shadow-2xl">
-                                <Image
-                                    src="/camp.jpg"
-                                    alt="SHREEM Diagnostic Health Camp"
-                                    fill
-                                    className="object-cover"
-                                    priority
-                                />
+                    {loading ? (
+                        <div className="text-center py-12">
+                            <div className="w-12 h-12 border-4 border-primary-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
+                            <p className="text-gray-500 mt-4">Loading camps...</p>
+                        </div>
+                    ) : camps.length > 0 ? (
+                        <>
+                            {/* Camp Tabs */}
+                            {camps.length > 1 && (
+                                <div className="flex flex-wrap gap-2 justify-center mb-8">
+                                    {camps.map((camp) => (
+                                        <button
+                                            key={camp._id}
+                                            onClick={() => setSelectedCamp(camp)}
+                                            className={`px-4 py-2 rounded-full font-medium transition-all ${selectedCamp?._id === camp._id
+                                                    ? 'bg-primary-600 text-white'
+                                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                                }`}
+                                        >
+                                            {camp.name}
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+
+                            {selectedCamp && (
+                                <div className="grid md:grid-cols-2 gap-12 items-start">
+                                    {/* Camp Media Gallery */}
+                                    <div className="space-y-4">
+                                        {/* Main Image/Video */}
+                                        <div className="relative w-full h-auto min-h-[400px] rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
+                                            {selectedCamp.media && selectedCamp.media.length > 0 ? (
+                                                selectedCamp.media[0].type === 'video' ? (
+                                                    <video
+                                                        src={selectedCamp.media[0].url}
+                                                        className="w-full h-full object-cover absolute inset-0"
+                                                        controls
+                                                    />
+                                                ) : (
+                                                    <Image
+                                                        src={selectedCamp.media[0].url}
+                                                        alt={selectedCamp.name}
+                                                        fill
+                                                        className="object-contain"
+                                                        priority
+                                                    />
+                                                )
+                                            ) : (
+                                                <Image
+                                                    src="/camp.jpg"
+                                                    alt="SHREEM Diagnostic Health Camp"
+                                                    fill
+                                                    className="object-contain"
+                                                    priority
+                                                />
+                                            )}
+                                        </div>
+
+                                        {/* Thumbnails */}
+                                        {selectedCamp.media && selectedCamp.media.length > 1 && (
+                                            <div className="grid grid-cols-4 gap-2">
+                                                {selectedCamp.media.slice(1, 5).map((media, idx) => (
+                                                    <div key={idx} className="relative aspect-square rounded-lg overflow-hidden bg-gray-100">
+                                                        {media.type === 'video' ? (
+                                                            <video
+                                                                src={media.url}
+                                                                className="w-full h-full object-cover"
+                                                            />
+                                                        ) : (
+                                                            <Image
+                                                                src={media.url}
+                                                                alt={`${selectedCamp.name} ${idx + 2}`}
+                                                                fill
+                                                                className="object-cover"
+                                                            />
+                                                        )}
+                                                    </div>
+                                                ))}
+                                                {selectedCamp.media.length > 5 && (
+                                                    <div className="relative aspect-square rounded-lg overflow-hidden bg-gray-800 flex items-center justify-center">
+                                                        <span className="text-white font-bold">+{selectedCamp.media.length - 5}</span>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )}
+
+                                        <div className="bg-gradient-to-r from-secondary-400 to-secondary-500 text-primary-800 px-6 py-4 rounded-xl shadow-lg inline-block">
+                                            <p className="font-bold text-lg">Free Health Camp</p>
+                                            <p className="text-sm">मुफ्त स्वास्थ्य शिविर</p>
+                                        </div>
+                                    </div>
+
+                                    {/* Camp Details */}
+                                    <div>
+                                        <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                                            {selectedCamp.name}
+                                        </h3>
+                                        {selectedCamp.nameHindi && (
+                                            <p className="text-lg text-primary-600 font-semibold mb-4">
+                                                {selectedCamp.nameHindi}
+                                            </p>
+                                        )}
+
+                                        {selectedCamp.location && (
+                                            <p className="text-gray-600 mb-4 flex items-center">
+                                                <span className="mr-2">📍</span>
+                                                {selectedCamp.location}
+                                            </p>
+                                        )}
+
+                                        {selectedCamp.description && (
+                                            <div className="mb-6">
+                                                <p className="text-gray-700">{selectedCamp.description}</p>
+                                                {selectedCamp.descriptionHindi && (
+                                                    <p className="text-gray-500 mt-2">{selectedCamp.descriptionHindi}</p>
+                                                )}
+                                            </div>
+                                        )}
+
+                                        <div className="space-y-4 mb-8">
+                                            {(selectedCamp.services && selectedCamp.services.length > 0
+                                                ? selectedCamp.services.map((service, idx) => ({ name: service, nameHindi: '' }))
+                                                : defaultServices
+                                            ).map((service, idx) => (
+                                                <div key={idx} className="flex items-start space-x-3">
+                                                    <span className="text-2xl">✅</span>
+                                                    <div>
+                                                        <p className="font-semibold text-gray-900">{service.name}</p>
+                                                        {service.nameHindi && (
+                                                            <p className="text-gray-600">{service.nameHindi}</p>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        <div className="bg-gray-50 p-6 rounded-xl">
+                                            <p className="text-gray-700 mb-4">
+                                                As an authorized Dr. Lal PathLabs collection center, we are committed to community health.
+                                                Our medical camps bring quality healthcare closer to the people of Ambikapur.
+                                            </p>
+                                            <p className="text-gray-600 text-sm">
+                                                अधिकृत डॉ. लाल पैथलैब्स कलेक्शन सेंटर के रूप में, हम समुदाय के स्वास्थ्य के लिए प्रतिबद्ध हैं।
+                                                हमारे मेडिकल कैंप अंबिकापुर के लोगों के करीब गुणवत्तापूर्ण स्वास्थ्य सेवा लाते हैं।
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </>
+                    ) : (
+                        /* Fallback when no camps exist */
+                        <div className="grid md:grid-cols-2 gap-12 items-center">
+                            <div className="relative">
+                                <div className="relative w-full h-auto min-h-[400px] rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
+                                    <Image
+                                        src="/camp.jpg"
+                                        alt="SHREEM Diagnostic Health Camp"
+                                        fill
+                                        className="object-contain"
+                                        priority
+                                    />
+                                </div>
+                                <div className="absolute -bottom-4 -right-4 bg-gradient-to-r from-secondary-400 to-secondary-500 text-primary-800 px-6 py-4 rounded-xl shadow-lg">
+                                    <p className="font-bold text-lg">Free Health Camp</p>
+                                    <p className="text-sm">मुफ्त स्वास्थ्य शिविर</p>
+                                </div>
                             </div>
-                            <div className="absolute -bottom-4 -right-4 bg-gradient-to-r from-secondary-400 to-secondary-500 text-primary-800 px-6 py-4 rounded-xl shadow-lg">
-                                <p className="font-bold text-lg">Free Health Camp</p>
-                                <p className="text-sm">मुफ्त स्वास्थ्य शिविर</p>
+                            <div>
+                                <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                                    Medical Camp by SHREEM Diagnostic
+                                </h3>
+                                <p className="text-lg text-primary-600 font-semibold mb-4">
+                                    श्रीम डायग्नोस्टिक द्वारा मेडिकल कैंप
+                                </p>
+                                <div className="space-y-4 mb-8">
+                                    {defaultServices.map((service, idx) => (
+                                        <div key={idx} className="flex items-start space-x-3">
+                                            <span className="text-2xl">✅</span>
+                                            <div>
+                                                <p className="font-semibold text-gray-900">{service.name}</p>
+                                                <p className="text-gray-600">{service.nameHindi}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="bg-gray-50 p-6 rounded-xl">
+                                    <p className="text-gray-700 mb-4">
+                                        As an authorized Dr. Lal PathLabs collection center, we are committed to community health.
+                                        Our medical camps bring quality healthcare closer to the people of Ambikapur.
+                                    </p>
+                                    <p className="text-gray-600 text-sm">
+                                        अधिकृत डॉ. लाल पैथलैब्स कलेक्शन सेंटर के रूप में, हम समुदाय के स्वास्थ्य के लिए प्रतिबद्ध हैं।
+                                        हमारे मेडिकल कैंप अंबिकापुर के लोगों के करीब गुणवत्तापूर्ण स्वास्थ्य सेवा लाते हैं।
+                                    </p>
+                                </div>
                             </div>
                         </div>
-
-                        {/* Camp Details */}
-                        <div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                                Medical Camp by SHREEM Diagnostic
-                            </h3>
-                            <p className="text-lg text-primary-600 font-semibold mb-4">
-                                श्रीम डायग्नोस्टिक द्वारा मेडिकल कैंप
-                            </p>
-
-                            <div className="space-y-4 mb-8">
-                                <div className="flex items-start space-x-3">
-                                    <span className="text-2xl">✅</span>
-                                    <div>
-                                        <p className="font-semibold text-gray-900">Free Blood Sugar Test</p>
-                                        <p className="text-gray-600">मुफ्त ब्लड शुगर जांच</p>
-                                    </div>
-                                </div>
-                                <div className="flex items-start space-x-3">
-                                    <span className="text-2xl">✅</span>
-                                    <div>
-                                        <p className="font-semibold text-gray-900">Free Blood Pressure Check</p>
-                                        <p className="text-gray-600">मुफ्त ब्लड प्रेशर जांच</p>
-                                    </div>
-                                </div>
-                                <div className="flex items-start space-x-3">
-                                    <span className="text-2xl">✅</span>
-                                    <div>
-                                        <p className="font-semibold text-gray-900">Free Health Consultation</p>
-                                        <p className="text-gray-600">मुफ्त स्वास्थ्य परामर्श</p>
-                                    </div>
-                                </div>
-                                <div className="flex items-start space-x-3">
-                                    <span className="text-2xl">✅</span>
-                                    <div>
-                                        <p className="font-semibold text-gray-900">Health Awareness Session</p>
-                                        <p className="text-gray-600">स्वास्थ्य जागरूकता सत्र</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="bg-gray-50 p-6 rounded-xl">
-                                <p className="text-gray-700 mb-4">
-                                    As an authorized Dr. Lal PathLabs collection center, we are committed to community health.
-                                    Our medical camps bring quality healthcare closer to the people of Ambikapur.
-                                </p>
-                                <p className="text-gray-600 text-sm">
-                                    अधिकृत डॉ. लाल पैथलैब्स कलेक्शन सेंटर के रूप में, हम समुदाय के स्वास्थ्य के लिए प्रतिबद्ध हैं।
-                                    हमारे मेडिकल कैंप अंबिकापुर के लोगों के करीब गुणवत्तापूर्ण स्वास्थ्य सेवा लाते हैं।
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    )}
                 </div>
             </section>
 
@@ -302,3 +467,4 @@ export default function OffersPage() {
         </div>
     );
 }
+

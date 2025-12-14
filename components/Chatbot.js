@@ -6,19 +6,19 @@ import { useState, useRef, useEffect } from 'react';
 const RESPONSES = {
     greeting: {
         patterns: ['hello', 'hi', 'hey', 'good morning', 'good afternoon', 'good evening', 'namaste'],
-        response: 'Hello! Welcome to LAL PATH CLINIC. How can I help you today? You can ask about our tests, timings, location, or how to book.'
+        response: 'Hello! Welcome to SHREEM Diagnostic - Authorized Dr. Lal PathLabs Collection Center. How can I help you today? You can ask about our tests, timings, location, or how to book.'
     },
     timings: {
         patterns: ['timing', 'time', 'hours', 'open', 'close', 'when', 'schedule'],
-        response: 'Our clinic is open:\n📅 Monday - Saturday: 7:00 AM - 9:00 PM\n📅 Sunday: 8:00 AM - 2:00 PM\n\nSample collection is available during all working hours.'
+        response: 'Our clinic is open:\n📅 Monday - Saturday: 9:00 AM - 11:00 AM & 5:00 PM - 9:00 PM\n📅 Sunday: 8:00 AM - 2:00 PM\n\nSample collection is available during all working hours.'
     },
     location: {
         patterns: ['location', 'address', 'where', 'find', 'direction', 'map', 'reach'],
-        response: '📍 We are located at:\nNear Main Market, Ambikapur, Chhattisgarh - 497001\n\nYou can find us on Google Maps or visit our Contact page for directions.'
+        response: '📍 We are located at:\nInfront of Laxmipur School, Bilaspur Road, Mathpara, Ambikapur, Chhattisgarh\n\nYou can find us on Google Maps or visit our Contact page for directions.'
     },
     booking: {
         patterns: ['book', 'appointment', 'schedule', 'register', 'test'],
-        response: 'To book a test:\n1️⃣ Register/Login on our website\n2️⃣ Go to "Book a Test" in your dashboard\n3️⃣ Select your test, date & time\n4️⃣ Visit our clinic at the scheduled time\n\nNeed help? Call us at +91 98765 43210'
+        response: 'To book a test:\n1️⃣ Register/Login on our website\n2️⃣ Go to "Book a Test" in your dashboard\n3️⃣ Select your test, date & time\n4️⃣ Visit SHREEM Diagnostic at the scheduled time\n\nNeed help? Call us at +91 9238745983'
     },
     tests: {
         patterns: ['test', 'blood', 'urine', 'thyroid', 'diabetes', 'available', 'price', 'cost'],
@@ -34,11 +34,11 @@ const RESPONSES = {
     },
     contact: {
         patterns: ['contact', 'phone', 'call', 'number', 'email'],
-        response: '📞 Contact us:\nPhone: +91 98765 43210\nEmail: info@lalpathclinic.com\n\nYou can also use the WhatsApp button on this page for quick chat!'
+        response: '📞 Contact us:\nPhone: +91 9238745983\nEmail: shreemdiagnostic@gmail.com\n\nYou can also use the WhatsApp button on this page for quick chat!'
     },
     thanks: {
         patterns: ['thank', 'thanks', 'bye', 'goodbye', 'helpful'],
-        response: 'You\'re welcome! 😊 Thank you for choosing LAL PATH CLINIC. Stay healthy! If you need any more help, feel free to ask.'
+        response: 'You\'re welcome! 😊 Thank you for choosing SHREEM Diagnostic. Stay healthy! If you need any more help, feel free to ask.'
     }
 };
 
@@ -61,7 +61,7 @@ function getResponse(message) {
 export default function Chatbot() {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState([
-        { type: 'bot', text: 'Hello! 👋 I\'m your LAL PATH CLINIC assistant. How can I help you today?' }
+        { type: 'bot', text: 'Hello! 👋 I\'m your SHREEM Diagnostic assistant. How can I help you today?' }
     ]);
     const [inputValue, setInputValue] = useState('');
     const messagesEndRef = useRef(null);
@@ -136,8 +136,8 @@ export default function Chatbot() {
                             >
                                 <div
                                     className={`max-w-[80%] p-3 rounded-2xl text-sm whitespace-pre-line ${msg.type === 'user'
-                                            ? 'bg-primary-600 text-white rounded-br-md'
-                                            : 'bg-white text-gray-800 shadow-sm border border-gray-100 rounded-bl-md'
+                                        ? 'bg-primary-600 text-white rounded-br-md'
+                                        : 'bg-white text-gray-800 shadow-sm border border-gray-100 rounded-bl-md'
                                         }`}
                                 >
                                     {msg.text}
@@ -199,8 +199,8 @@ export default function Chatbot() {
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className={`w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 ${isOpen
-                        ? 'bg-gray-600 hover:bg-gray-700'
-                        : 'bg-primary-600 hover:bg-primary-700'
+                    ? 'bg-gray-600 hover:bg-gray-700'
+                    : 'bg-primary-600 hover:bg-primary-700'
                     }`}
             >
                 {isOpen ? (

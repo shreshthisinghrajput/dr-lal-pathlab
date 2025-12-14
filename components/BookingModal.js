@@ -102,8 +102,8 @@ _Sent from SHREEM Diagnostic Website_`;
                             <div key={s} className="flex items-center">
                                 <div
                                     className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all ${step >= s
-                                            ? 'bg-primary-600 text-white'
-                                            : 'bg-gray-200 text-gray-500'
+                                        ? 'bg-primary-600 text-white'
+                                        : 'bg-gray-200 text-gray-500'
                                         }`}
                                 >
                                     {step > s ? '✓' : s}
@@ -221,13 +221,31 @@ _Sent from SHREEM Diagnostic Website_`;
                                     onChange={handleInputChange}
                                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
                                 >
-                                    <option value="">Select a package</option>
-                                    <option value="Swasth Fit SUPER 1">Swasth Fit SUPER 1 - ₹1,050</option>
-                                    <option value="Swasth Fit SUPER 2">Swasth Fit SUPER 2 - ₹1,250</option>
-                                    <option value="Swasth Fit SUPER 3">Swasth Fit SUPER 3 - ₹1,850</option>
-                                    <option value="Swasth Fit SUPER 4">Swasth Fit SUPER 4 - ₹2,050</option>
-                                    <option value="Swasth Fit COMPLETE">Swasth Fit COMPLETE - ₹5,000</option>
-                                    <option value="Other">Other / Individual Tests</option>
+                                    <option value="">Select a test/package</option>
+                                    <optgroup label="Health Packages">
+                                        <option value="Swasth Fit SUPER 1">Swasth Fit SUPER 1 - ₹1,050</option>
+                                        <option value="Swasth Fit SUPER 2">Swasth Fit SUPER 2 - ₹1,250</option>
+                                        <option value="Swasth Fit SUPER 3">Swasth Fit SUPER 3 - ₹1,850</option>
+                                        <option value="Swasth Fit SUPER 4">Swasth Fit SUPER 4 - ₹2,050</option>
+                                        <option value="Swasth Fit COMPLETE">Swasth Fit COMPLETE - ₹5,000</option>
+                                    </optgroup>
+                                    <optgroup label="Individual Tests">
+                                        <option value="Sugar Fasting">Sugar Fasting - ₹60</option>
+                                        <option value="Random Sugar">Random Sugar - ₹60</option>
+                                        <option value="Lipid Profile">Lipid Profile - ₹630</option>
+                                        <option value="Thyroid Profile">Thyroid Profile - ₹550</option>
+                                        <option value="Kidney Function Test">Kidney Function Test - ₹480</option>
+                                        <option value="Liver Function Test">Liver Function Test - ₹550</option>
+                                        <option value="Complete Blood Count (CBC)">Complete Blood Count (CBC) - ₹200</option>
+                                        <option value="Vitamin B12">Vitamin B12 - ₹1,200</option>
+                                        <option value="Vitamin D (25 Hydroxy)">Vitamin D (25 Hydroxy) - ₹1,100</option>
+                                        <option value="Urine R/M">Urine R/M - ₹80</option>
+                                        <option value="Urine Culture">Urine Culture - ₹455</option>
+                                        <option value="Pus Culture">Pus Culture - ₹960</option>
+                                        <option value="Blood Group">Blood Group - ₹140</option>
+                                        <option value="Viral Marker">Viral Marker - ₹950</option>
+                                    </optgroup>
+                                    <option value="Other">Other / Custom Request</option>
                                 </select>
                             </div>
                             <div className="grid grid-cols-2 gap-4">

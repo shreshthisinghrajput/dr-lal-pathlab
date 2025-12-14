@@ -44,6 +44,10 @@ export default function HomePageContent() {
                                 <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
                                 <span className="text-sm">Trusted by 10,000+ Patients | 10,000+ मरीजों द्वारा भरोसेमंद</span>
                             </div>
+                            <div className="inline-flex items-center px-4 py-2 bg-green-500/30 rounded-full mb-6 ml-0 md:ml-2">
+                                <span className="text-lg mr-2">🏠</span>
+                                <span className="text-sm font-semibold">We provide FREE Home Collection | मुफ्त होम कलेक्शन उपलब्ध</span>
+                            </div>
 
                             {/* Instagram Bio Tagline */}
                             <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
@@ -148,53 +152,54 @@ export default function HomePageContent() {
             {/* Health Camp Gallery */}
             <HealthCampGallery />
 
-            {/* Pediatric Doctors Section */}
-            <DoctorsSection />
-
-            {/* Popular Tests */}
-            <section className="py-20 bg-white">
+            {/* Individual Tests Section */}
+            <section className="py-20 bg-gradient-to-br from-primary-50 to-blue-50">
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-12">
-                        <span className="text-primary-600 font-semibold mb-2 inline-block">Our Services</span>
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Popular Tests</h2>
+                        <span className="text-primary-600 font-semibold mb-2 inline-block">Individual Tests</span>
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Test Menu</h2>
                         <p className="text-gray-600 max-w-2xl mx-auto">
-                            Comprehensive diagnostic tests with accurate results and quick turnaround time
+                            Book individual diagnostic tests at affordable prices
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-8">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                         {[
-                            { title: 'Complete Blood Count (CBC)', price: '₹350', icon: '🩸', desc: 'Comprehensive blood analysis' },
-                            { title: 'Thyroid Profile', price: '₹550', icon: '🦋', desc: 'T3, T4, TSH levels' },
-                            { title: 'Diabetes Panel', price: '₹750', icon: '📊', desc: 'Fasting, PP, HbA1c' },
-                            { title: 'Liver Function Test', price: '₹650', icon: '🫁', desc: 'Complete liver health check' },
-                            { title: 'Kidney Function Test', price: '₹600', icon: '💪', desc: 'Kidney health assessment' },
-                            { title: 'Lipid Profile', price: '₹450', icon: '❤️', desc: 'Cholesterol levels' },
+                            { name: 'Sugar Fasting', price: 60, icon: '🩸' },
+                            { name: 'Random Sugar', price: 60, icon: '🩸' },
+                            { name: 'Lipid Profile', price: 630, icon: '❤️' },
+                            { name: 'Thyroid Profile', price: 550, icon: '🦋' },
+                            { name: 'Kidney Function Test', price: 480, icon: '💪' },
+                            { name: 'Liver Function Test', price: 550, icon: '🫁' },
+                            { name: 'Complete Blood Count (CBC)', price: 200, icon: '🩸' },
+                            { name: 'Vitamin B12', price: 1200, icon: '💊' },
+                            { name: 'Vitamin D (25 Hydroxy)', price: 1100, icon: '☀️' },
+                            { name: 'Urine R/M', price: 80, icon: '🧪' },
+                            { name: 'Urine Culture', price: 455, icon: '🧫' },
+                            { name: 'Pus Culture', price: 960, icon: '🧫' },
+                            { name: 'Blood Group', price: 140, icon: '🅰️' },
+                            { name: 'Viral Marker', price: 950, icon: '🦠' },
                         ].map((test, index) => (
-                            <div key={index} className="bg-gray-50 rounded-xl p-6 card-hover border border-gray-100">
-                                <div className="text-4xl mb-4">{test.icon}</div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-2">{test.title}</h3>
-                                <p className="text-gray-600 mb-4">{test.desc}</p>
-                                <div className="flex items-center justify-between">
-                                    <span className="text-2xl font-bold text-primary-600">{test.price}</span>
-                                    <Link href="/tests" className="text-primary-600 hover:text-primary-700 font-medium flex items-center">
-                                        View <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                                    </Link>
+                            <div key={index} className="bg-white rounded-xl p-5 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100">
+                                <div className="flex items-center justify-between mb-3">
+                                    <span className="text-2xl">{test.icon}</span>
+                                    <span className="text-xl font-bold text-primary-600">₹{test.price}</span>
                                 </div>
+                                <h3 className="text-base font-semibold text-gray-900 mb-3 line-clamp-2">{test.name}</h3>
+                                <button
+                                    onClick={() => handleBookNow(test.name)}
+                                    className="w-full py-2 px-4 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-medium text-sm"
+                                >
+                                    Book Now
+                                </button>
                             </div>
                         ))}
                     </div>
-
-                    <div className="text-center mt-12">
-                        <Link href="/tests" className="btn-primary inline-flex items-center">
-                            View All Tests
-                            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                        </Link>
-                    </div>
                 </div>
             </section>
+
+            {/* Pediatric Doctors Section */}
+            <DoctorsSection />
 
             {/* How It Works */}
             <section className="py-20 bg-gradient-to-br from-primary-50 to-blue-50">

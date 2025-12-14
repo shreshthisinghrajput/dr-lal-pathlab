@@ -1,31 +1,40 @@
 'use client';
 
 import Image from 'next/image';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 
-// Health camp images - add more images to this array as they become available
-const healthCampImages = [
+// Fallback images for when no camps exist
+const fallbackImages = [
     {
         src: '/camp.jpg',
         alt: 'SHREEM Diagnostic Health Camp',
         caption: 'Free Health Checkup Camp',
     },
-    // Placeholder entries - will show same image until more are added
-    {
-        src: '/camp.jpg',
-        alt: 'Community Health Initiative',
-        caption: 'Blood Sugar Testing',
-    },
-    {
-        src: '/camp.jpg',
-        alt: 'Health Awareness Program',
-        caption: 'Health Awareness Session',
-    },
 ];
 
 export default function HealthCampGallery() {
     const scrollRef = useRef(null);
+    const [camps, setCamps] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        fetchCamps();
+    }, []);
+
+    const fetchCamps = async () => {
+        try {
+            const response = await fetch('/api/camps?active=true');
+            const data = await response.json();
+            if (data.success && data.data.length > 0) {
+                setCamps(data.data);
+            }
+        } catch (error) {
+            console.error('Error fetching camps:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const scroll = (direction) => {
         if (scrollRef.current) {
@@ -36,6 +45,29 @@ export default function HealthCampGallery() {
             });
         }
     };
+
+    // Build gallery items from camps or use fallback
+    const galleryItems = camps.length > 0
+        ? camps.flatMap(camp =>
+            camp.media && camp.media.length > 0
+                ? camp.media.map((media, idx) => ({
+                    ...media,
+                    campName: camp.name,
+                    caption: media.caption || camp.name,
+                }))
+                : [{
+                    type: 'image',
+                    url: '/camp.jpg',
+                    campName: camp.name,
+                    caption: camp.name,
+                }]
+        )
+        : fallbackImages.map(img => ({
+            type: 'image',
+            url: img.src,
+            campName: 'SHREEM Diagnostic',
+            caption: img.caption,
+        }));
 
     return (
         <section className="py-16 bg-gradient-to-br from-primary-50 to-blue-50">
@@ -78,34 +110,59 @@ export default function HealthCampGallery() {
                         ref={scrollRef}
                         className="flex gap-6 overflow-x-auto health-camp-gallery px-4 py-4"
                     >
-                        {healthCampImages.map((image, index) => (
-                            <div
-                                key={index}
-                                className="flex-shrink-0 w-72 md:w-80 rounded-2xl overflow-hidden shadow-lg bg-white card-hover"
-                            >
-                                <div className="relative w-full h-48">
-                                    <Image
-                                        src={image.src}
-                                        alt={image.alt}
-                                        fill
-                                        className="object-cover"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                                    <div className="absolute bottom-3 left-3 right-3">
-                                        <p className="text-white font-semibold text-sm">{image.caption}</p>
+                        {loading ? (
+                            // Loading skeleton
+                            [...Array(3)].map((_, index) => (
+                                <div
+                                    key={index}
+                                    className="flex-shrink-0 w-72 md:w-80 rounded-2xl overflow-hidden shadow-lg bg-white"
+                                >
+                                    <div className="w-full h-48 bg-gray-200 animate-pulse"></div>
+                                    <div className="p-4">
+                                        <div className="h-4 bg-gray-200 rounded animate-pulse mb-2"></div>
+                                        <div className="h-3 bg-gray-200 rounded animate-pulse w-2/3"></div>
                                     </div>
                                 </div>
-                                <div className="p-4">
-                                    <div className="flex items-center text-sm text-gray-600 mb-2">
-                                        <span className="mr-1">🏥</span>
-                                        <span>SHREEM Diagnostic</span>
+                            ))
+                        ) : (
+                            galleryItems.map((item, index) => (
+                                <div
+                                    key={index}
+                                    className="flex-shrink-0 w-72 md:w-80 rounded-2xl overflow-hidden shadow-lg bg-white card-hover"
+                                >
+                                    <div className="relative w-full h-48">
+                                        {item.type === 'video' ? (
+                                            <video
+                                                src={item.url}
+                                                className="w-full h-full object-cover"
+                                                controls
+                                                muted
+                                            />
+                                        ) : (
+                                            <Image
+                                                src={item.url}
+                                                alt={item.caption || 'Health Camp'}
+                                                fill
+                                                className="object-cover"
+                                            />
+                                        )}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                                        <div className="absolute bottom-3 left-3 right-3">
+                                            <p className="text-white font-semibold text-sm">{item.caption}</p>
+                                        </div>
                                     </div>
-                                    <p className="text-xs text-gray-500">
-                                        Free health services for the community
-                                    </p>
+                                    <div className="p-4">
+                                        <div className="flex items-center text-sm text-gray-600 mb-2">
+                                            <span className="mr-1">🏥</span>
+                                            <span>{item.campName || 'SHREEM Diagnostic'}</span>
+                                        </div>
+                                        <p className="text-xs text-gray-500">
+                                            Free health services for the community
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))
+                        )}
                     </div>
                 </div>
 
@@ -125,3 +182,4 @@ export default function HealthCampGallery() {
         </section>
     );
 }
+

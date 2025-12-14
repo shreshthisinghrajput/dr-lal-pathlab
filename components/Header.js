@@ -47,7 +47,7 @@ export default function Header() {
                             <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            Mon-Sat: 7AM-9PM | सोम-शनि: सुबह 7 - रात 9
+                            Mon-Sat: 9AM-11AM & 5PM-9PM | सोम-शनि: 9-11 & 5-9
                         </span>
                     </div>
                     <div className="flex items-center space-x-4">
@@ -63,14 +63,17 @@ export default function Header() {
                     <div className="flex items-center justify-between">
                         {/* Logo */}
                         <Link href="/" className="flex items-center space-x-3">
-                            <Image
-                                src="/logo.png"
-                                alt="Dr Lal PathLabs"
-                                width={160}
-                                height={50}
-                                className="h-12 w-auto"
-                                priority
-                            />
+                            <div className="flex flex-col items-start">
+                                <Image
+                                    src="/logo.png"
+                                    alt="Dr Lal PathLabs"
+                                    width={140}
+                                    height={45}
+                                    className="h-10 w-auto"
+                                    priority
+                                />
+                                <span className="text-xl md:text-2xl font-bold text-primary-700 tracking-tight">SHREEM Diagnostic</span>
+                            </div>
                         </Link>
 
                         {/* Desktop Navigation */}

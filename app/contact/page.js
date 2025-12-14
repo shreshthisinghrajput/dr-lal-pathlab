@@ -148,7 +148,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <h3 className="font-bold text-gray-900 mb-1">Address</h3>
-                                        <p className="text-gray-600">Near Main Market,<br />Ambikapur, Chhattisgarh - 497001</p>
+                                        <p className="text-gray-600">Infront of Laxmipur School,<br />Bilaspur Road, Mathpara,<br />Ambikapur, Chhattisgarh</p>
                                     </div>
                                 </div>
 

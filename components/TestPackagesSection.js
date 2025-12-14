@@ -184,6 +184,15 @@ export default function TestPackagesSection({ onBookNow }) {
                         <div className="text-center">
                             <h3 className="text-2xl font-bold text-gray-900">Test Inclusion Comparison</h3>
                             <p className="text-sm text-gray-500">Powered by Dr. Lal PathLabs - 75+ Years of Trust</p>
+                            <div className="mt-2">
+                                <Image
+                                    src="/lal-pathlab-logo.png"
+                                    alt="Dr Lal PathLabs - India's leading and most reputed diagnostic chain"
+                                    width={200}
+                                    height={50}
+                                    className="object-contain mx-auto"
+                                />
+                            </div>
                         </div>
                         <Image
                             src="/75-years-logo.png"
