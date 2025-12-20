@@ -1,15 +1,52 @@
 'use client';
 
 import Image from 'next/image';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 export default function PopupModal() {
     const [isOpen, setIsOpen] = useState(false);
+    const [isClosing, setIsClosing] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+    const closeTimeoutRef = useRef(null);
+
+    // Detect if user is on mobile device
+    useEffect(() => {
+        const checkMobile = () => {
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            const isSmallScreen = window.innerWidth < 768;
+            setIsMobile(isTouchDevice || isSmallScreen);
+        };
+
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     const handleClose = useCallback(() => {
         setIsOpen(false);
+        setIsClosing(false);
         sessionStorage.setItem('hasSeenPopup', 'true');
+        if (closeTimeoutRef.current) {
+            clearTimeout(closeTimeoutRef.current);
+            closeTimeoutRef.current = null;
+        }
     }, []);
+
+    const handleSmoothClose = useCallback(() => {
+        if (!isClosing && !closeTimeoutRef.current) {
+            setIsClosing(true);
+            closeTimeoutRef.current = setTimeout(() => {
+                handleClose();
+            }, 2000);
+        }
+    }, [isClosing, handleClose]);
+
+    // Handle touch/click on overlay - only for mobile
+    const handleOverlayInteraction = useCallback(() => {
+        if (isMobile) {
+            handleSmoothClose();
+        }
+    }, [isMobile, handleSmoothClose]);
 
     useEffect(() => {
         // Show popup on first visit
@@ -19,23 +56,35 @@ export default function PopupModal() {
         }
     }, []);
 
+    // Cleanup timeout on unmount
+    useEffect(() => {
+        return () => {
+            if (closeTimeoutRef.current) {
+                clearTimeout(closeTimeoutRef.current);
+            }
+        };
+    }, []);
+
     if (!isOpen) return null;
 
     return (
         <div
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fadeIn"
-            onClick={handleClose}
-            onMouseMove={handleClose}
+            className={`fixed inset-0 z-[100] flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-[2000ms] ease-out ${isClosing ? 'bg-black/0 opacity-0 pointer-events-none' : 'bg-black/60 opacity-100 animate-fadeIn'}`}
+            onClick={handleOverlayInteraction}
+            onTouchStart={handleOverlayInteraction}
         >
             <div
-                className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden max-h-[90vh] overflow-y-auto"
+                className={`relative bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden max-h-[90vh] overflow-y-auto transition-all duration-[2000ms] ease-out ${isClosing ? 'opacity-0 scale-90 translate-y-8 blur-sm' : 'opacity-100 scale-100 translate-y-0 blur-0'}`}
                 onClick={(e) => e.stopPropagation()}
-                onMouseMove={(e) => e.stopPropagation()}
+                onTouchStart={isMobile ? handleSmoothClose : undefined}
             >
                 {/* Close Button - Positioned inside content for mobile accessibility */}
                 <div className="sticky top-0 z-20 flex justify-end p-3 bg-gradient-to-b from-white via-white to-transparent">
                     <button
-                        onClick={handleClose}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            handleClose();
+                        }}
                         className="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center shadow-md transition-all hover:scale-110 border border-gray-200"
                         aria-label="Close popup"
                     >
@@ -71,7 +120,7 @@ export default function PopupModal() {
                         <span className="text-3xl mr-2">🏥</span>
                         <div>
                             <h2 className="text-xl font-bold">SHREEM Diagnostic</h2>
-                            <p className="text-xs text-blue-200">श्रीम डायग्नोस्टिक</p>
+                            <p className="text-xs text-blue-200">श्रीं डायग्नोस्टिक</p>
                         </div>
                     </div>
                     <div className="inline-flex items-center bg-white/20 px-3 py-1 rounded-full">
@@ -108,5 +157,3 @@ export default function PopupModal() {
         </div>
     );
 }
-
-

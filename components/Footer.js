@@ -34,7 +34,7 @@ export default function Footer() {
                             SHREEM Diagnostic is an authorized Dr. Lal PathLabs collection center providing accurate and timely diagnostic services. We are committed to delivering quality healthcare with compassion.
                         </p>
                         <p className="text-gray-500 text-sm mb-4">
-                            श्रीम डायग्नोस्टिक एक अधिकृत डॉ. लाल पैथलैब्स कलेक्शन सेंटर है जो सटीक और समय पर डायग्नोस्टिक सेवाएं प्रदान करता है।
+                            श्रीं डायग्नोस्टिक एक अधिकृत डॉ. लाल पैथलैब्स कलेक्शन सेंटर है जो सटीक और समय पर डायग्नोस्टिक सेवाएं प्रदान करता है।
                         </p>
                         <div className="flex space-x-4">
                             <a href="https://www.facebook.com/share/1AYLYWiQAx/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">

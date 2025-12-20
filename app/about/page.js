@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function AboutPage() {
     return (
         <div className="animate-fadeIn">
@@ -44,13 +46,14 @@ export default function AboutPage() {
                             </p>
                         </div>
                         <div className="relative">
-                            <div className="w-full h-80 bg-gradient-to-br from-primary-100 to-primary-200 rounded-2xl flex items-center justify-center">
-                                <div className="text-center">
-                                    <svg className="w-24 h-24 text-primary-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                                    </svg>
-                                    <p className="text-primary-700 font-semibold">Diagnostic Center</p>
-                                </div>
+                            <div className="w-full h-80 rounded-2xl overflow-hidden shadow-xl">
+                                <Image
+                                    src="/dr-lal-founder.png"
+                                    alt="Dr. Lal PathLabs - 75+ Years of Trust"
+                                    fill
+                                    className="object-cover"
+                                    priority
+                                />
                             </div>
                             <div className="absolute -bottom-6 -right-6 bg-secondary-400 text-gray-900 px-6 py-4 rounded-xl shadow-lg">
                                 <p className="font-bold text-2xl">Since 2025</p>

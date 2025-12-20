@@ -261,7 +261,7 @@ export default function OffersPage() {
                                     Medical Camp by SHREEM Diagnostic
                                 </h3>
                                 <p className="text-lg text-primary-600 font-semibold mb-4">
-                                    श्रीम डायग्नोस्टिक द्वारा मेडिकल कैंप
+                                    श्रीं डायग्नोस्टिक द्वारा मेडिकल कैंप
                                 </p>
                                 <div className="space-y-4 mb-8">
                                     {defaultServices.map((service, idx) => (

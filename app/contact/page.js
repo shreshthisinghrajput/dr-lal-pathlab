@@ -174,12 +174,12 @@ export default function ContactPage() {
                                     <div>
                                         <h3 className="font-bold text-gray-900 mb-1">Instagram</h3>
                                         <a
-                                            href="https://www.instagram.com/shreemd_iagnostic"
+                                            href="https://www.instagram.com/shreemdiagnostic"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="text-primary-600 hover:text-primary-700 hover:underline"
                                         >
-                                            @shreemd_iagnostic
+                                            @shreemdiagnostic
                                         </a>
                                     </div>
                                 </div>

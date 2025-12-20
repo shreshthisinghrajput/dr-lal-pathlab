@@ -54,7 +54,7 @@ export default function HomePageContent() {
                                 <span className="text-secondary-400">SHREEM</span> Diagnostic
                             </h1>
                             <p className="text-2xl md:text-3xl font-bold text-blue-100 mb-4">
-                                श्रीम डायग्नोस्टिक
+                                श्रीं डायग्नोस्टिक
                             </p>
                             <p className="text-xl md:text-2xl text-white/90 mb-2">
                                 Get your health checked with us ✨

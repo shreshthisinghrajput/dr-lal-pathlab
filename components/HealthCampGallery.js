@@ -7,6 +7,12 @@ import { useState, useEffect, useCallback } from 'react';
 const mediaItems = [
     {
         type: 'image',
+        src: '/dr-lal-founder.png',
+        alt: 'Dr. Lal PathLabs Founder',
+        caption: 'Dr. Lal PathLabs - 75+ Years of Trust',
+    },
+    {
+        type: 'image',
         src: '/camp.jpg',
         alt: 'Health Camp',
         caption: 'Free Health Checkup Camp',
@@ -242,8 +248,8 @@ export default function HealthCampGallery() {
                                     key={index}
                                     onClick={() => goToSlide(index)}
                                     className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex
-                                            ? 'bg-primary-600 w-8'
-                                            : 'bg-gray-300 hover:bg-gray-400'
+                                        ? 'bg-primary-600 w-8'
+                                        : 'bg-gray-300 hover:bg-gray-400'
                                         }`}
                                     aria-label={`Go to slide ${index + 1}`}
                                 />
@@ -257,8 +263,8 @@ export default function HealthCampGallery() {
                                     key={index}
                                     onClick={() => goToSlide(index)}
                                     className={`relative w-20 h-14 md:w-24 md:h-16 rounded-lg overflow-hidden transition-all duration-300 ${index === currentIndex
-                                            ? 'ring-2 ring-primary-600 ring-offset-2 scale-105'
-                                            : 'opacity-60 hover:opacity-100'
+                                        ? 'ring-2 ring-primary-600 ring-offset-2 scale-105'
+                                        : 'opacity-60 hover:opacity-100'
                                         }`}
                                 >
                                     {item.type === 'video' ? (
